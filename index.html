@@ -31,75 +31,15 @@
 
   <body>
     <main>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid flex-between">
-          <a class="navbar-brand" href="#">EverAfterBook</a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div
-            class="collapse navbar-collapse justify-content-lg-end"
-            id="navbarSupportedContent"
-          >
-            <ul
-              class="nav nav-pills align-right flex-column flex-lg-row p-2"
-              id="myTab"
-              role="tablist"
-            >
-              <li class="nav-item" role="presentation">
-                <button
-                  class="nav-link active"
-                  id="home-tab"
-                  data-bs-toggle="tab"
-                  data-bs-target="#home"
-                  type="button"
-                  role="tab"
-                  aria-controls="home"
-                  aria-selected="true"
-                >
-                  Home
-                </button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button
-                  class="nav-link"
-                  id="venues-tab"
-                  data-bs-toggle="tab"
-                  data-bs-target="#venues"
-                  type="button"
-                  role="tab"
-                  aria-controls="venues"
-                  aria-selected="false"
-                >
-                  Venues
-                </button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button
-                  class="nav-link"
-                  id="about-tab"
-                  data-bs-toggle="tab"
-                  data-bs-target="#about"
-                  type="button"
-                  role="tab"
-                  aria-controls="about"
-                  aria-selected="false"
-                >
-                  About
-                </button>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+      <div id="header"></div>
+<script>
+    fetch("header.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("header").innerHTML = data;
+        });
+</script>
+
 
       <div
         class="tab-content container justify-content-center w-h-full"

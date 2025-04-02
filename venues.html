@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venues</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Noto Serif Oriya"
+      rel="stylesheet"
+    />
+</head>
+<body>
+    <div id="header"></div>
+    <script>
+        fetch("header.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("header").innerHTML = data;
+            });
+    </script>
+    
+
+    <div class="venues-container">
+        <h1>Explore Our Venues</h1>
+        <div class="venues-grid">
+            <div class="venue-card">
+                <img src="venue1.jpg" alt="Venue 1">
+                <div class="venue-info">
+                    <h3>Elegant Ballroom</h3>
+                    <p>A luxurious venue perfect for weddings and grand celebrations.</p>
+                </div>
+            </div>
+            <div class="venue-card">
+                <img src="venue2.jpg" alt="Venue 2">
+                <div class="venue-info">
+                    <h3>Garden Paradise</h3>
+                    <p>A breathtaking outdoor space surrounded by nature.</p>
+                </div>
+            </div>
+            <div class="venue-card">
+                <img src="venue3.jpg" alt="Venue 3">
+                <div class="venue-info">
+                    <h3>Rooftop Elegance</h3>
+                    <p>Enjoy stunning city views from this high-rise venue.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
