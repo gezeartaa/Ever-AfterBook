@@ -1,51 +1,44 @@
 <?php
-// Include the database connection
-if ($_SERVER['SERVER_NAME'] == 'localhost') {
-    include('db_local.php'); // Use local connection for local testing
-} else {
-    include('db_config.php'); // Use remote connection for live site
-}
-
 session_start();
 error_reporting(E_ALL);
-ini_set('display_errors', 1); // To display any errors
+ini_set('display_errors', 1);
 
+// Database connection
 $host = "localhost";
-$user = "root";
-$pass = "";
-$dbname = "everafterbook";
+$user = "root"; // Change if needed
+$pass = ""; // Change if your MySQL user has a password
+$dbname = "everafterbook"; // Make sure this matches your database
 
-// Connect to the database
 $conn = new mysqli($host, $user, $pass, $dbname);
 
+// Check for connection errors
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$error = ""; // To hold any error messages
+$error = ""; // Store error messages
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get form data
-    $username = $_POST['username'];
-    $password = md5($_POST['password']); // Hash the password as MD5
-
-    // Debugging: Output username and hashed password
-    echo "Username: $username<br>";
-    echo "Password (MD5): $password<br>";
+    $username = trim($_POST['username']);
+    $password = trim($_POST['password']);
+    $hashed_password = md5($password); // Hash password (matches database)
 
     // Prepare SQL statement
     $sql = "SELECT * FROM admin WHERE username=? AND password=?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ss", $username, $password);
+
+    if (!$stmt) {
+        die("🔥 SQL Error: " . $conn->error); // Debugging SQL errors
+    }
+
+    $stmt->bind_param("ss", $username, $hashed_password);
     $stmt->execute();
     $result = $stmt->get_result();
 
-    // Debugging: Check if query returned any rows
-    echo "Rows found: " . $result->num_rows . "<br>";
-
+    // Check if user exists
     if ($result->num_rows > 0) {
         $_SESSION['admin_username'] = $username;
-        header("Location: admin-dashboard.php");
+        header("Location: admin-dashboard.php"); // Redirect to dashboard
         exit();
     } else {
         $error = "Invalid username or password!";
@@ -69,7 +62,7 @@ $conn->close();
 <body>
     <div class="login-container">
         <h2>Admin Login</h2>
-
+        
         <?php if (!empty($error)) { echo "<p style='color: red;'>$error</p>"; } ?>
 
         <form action="login.php" method="POST">
@@ -79,14 +72,8 @@ $conn->close();
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
 
-            <button type="submit" class="btn-dark-pink">Login</button>
+            <button type="submit" class="btn btn-dark">Login</button>
         </form>
     </div>
 </body>
 </html>
-
-<?php
-// Close the database connection
-$conn->close();
-?>
-
