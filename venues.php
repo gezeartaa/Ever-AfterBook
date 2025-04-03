@@ -20,6 +20,12 @@ $result = $conn->query($sql); ?>
     <title>Venues</title>
     <style>
         /* CSS for the grid layout */
+        a{
+            text-decoration: none;
+        }
+        .title{
+            text-align: center;
+        }
         .venue-grid {
             position: relative;
             display: grid;
@@ -61,7 +67,9 @@ $result = $conn->query($sql); ?>
     </style>
 </head>
 <body>
-    <h1>Our Venues</h1>
+
+
+    <h1 class="title">Our Venues</h1>
 
     
         <?php
@@ -70,18 +78,19 @@ $result = $conn->query($sql); ?>
     
             echo "<div class='venue-grid'>"; 
             while ($row = $result->fetch_assoc()) {
-                echo "<div class='venue-card'>";
+                echo "<a href='venue_details.php?id=" . $row['venue_id'] . "' class='venue-card'>";
                 echo "<h3>" . $row['name'] . "</h3>";
                 echo "<p>" . $row['description'] . "</p>";
                 echo "<p>Location: " . $row['location'] . "</p>";
                 echo "<p>Price: $" . $row['price'] . "</p>";
-                echo "</div>";
+                echo "</a>";
             }
             echo("</div");
         } else {
             echo "No venues found.";
         }
         ?>
+        
     
 </body>
 </html>
