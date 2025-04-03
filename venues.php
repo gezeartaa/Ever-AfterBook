@@ -8,9 +8,8 @@ if ($_SERVER['SERVER_NAME'] == 'localhost') {
 
 // SQL query to fetch all venues
 $sql = "SELECT * FROM venues";
-$result = $conn->query($sql); ?>
-
-
+$result = $conn->query($sql);
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -36,6 +35,7 @@ $result = $conn->query($sql); ?>
             padding: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
         }
 
         .venue-card h3 {
@@ -48,6 +48,13 @@ $result = $conn->query($sql); ?>
             font-size: 1em;
             color: #666;
             margin: 5px 0;
+        }
+
+        .venue-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 15px;
         }
 
         .venue-card:hover {
@@ -63,26 +70,33 @@ $result = $conn->query($sql); ?>
 <body>
     <h1>Our Venues</h1>
 
-    
-        <?php
-        // Check if there are results from the query
-        if ($result->num_rows > 0) {
-    
-            echo "<div class='venue-grid'>"; 
-            while ($row = $result->fetch_assoc()) {
-                echo "<div class='venue-card'>";
-                echo "<h3>" . $row['name'] . "</h3>";
-                echo "<p>" . $row['description'] . "</p>";
-                echo "<p>Location: " . $row['location'] . "</p>";
-                echo "<p>Price: $" . $row['price'] . "</p>";
-                echo "</div>";
+    <?php
+    // Check if there are results from the query
+    if ($result->num_rows > 0) {
+        echo "<div class='venue-grid'>"; 
+        while ($row = $result->fetch_assoc()) {
+            echo "<div class='venue-card'>";
+            
+            // Display venue image (if available)
+            if (!empty($row['image']) && file_exists('images/' . $row['image'])) {
+                echo "<img src='uploads/" . $row['image'] . "' alt='" . $row['name'] . "' />";
+            } else {
+                echo "<img src='default_image.jpg' alt='No image available' />";
             }
-            echo("</div");
-        } else {
-            echo "No venues found.";
+
+            // Venue details
+            echo "<h3>" . $row['name'] . "</h3>";
+            echo "<p>" . $row['description'] . "</p>";
+            echo "<p>Location: " . $row['location'] . "</p>";
+            echo "<p>Price: $" . $row['price'] . "</p>";
+            echo "</div>";
         }
-        ?>
-    
+        echo "</div>";
+    } else {
+        echo "No venues found.";
+    }
+    ?>
+
 </body>
 </html>
 
