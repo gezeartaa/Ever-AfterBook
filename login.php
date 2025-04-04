@@ -1,51 +1,36 @@
 <?php
-// Include the database connection
-if ($_SERVER['SERVER_NAME'] == 'localhost') {
-    include('db_local.php'); // Use local connection for local testing
-} else {
-    include('db_config.php'); // Use remote connection for live site
-}
-
 session_start();
 error_reporting(E_ALL);
-ini_set('display_errors', 1); // To display any errors
+ini_set('display_errors', 1);
 
-$host = "localhost";
-$user = "root";
-$pass = "";
-$dbname = "everafterbook";
+// Database connection
+$host = "localhost"; // Change if needed
 
-// Connect to the database
-$conn = new mysqli($host, $user, $pass, $dbname);
+$dbname = "everafterbook"; // Change to your database name
 
+$conn = new mysqli($host, $dbname);
+
+// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$error = ""; // To hold any error messages
+$error = ""; // Variable to store error messages
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get form data
     $username = $_POST['username'];
-    $password = md5($_POST['password']); // Hash the password as MD5
+    $password = md5($_POST['password']); // MD5 hashing (not secure, but matches your database)
 
-    // Debugging: Output username and hashed password
-    echo "Username: $username<br>";
-    echo "Password (MD5): $password<br>";
-
-    // Prepare SQL statement
+    // Check credentials
     $sql = "SELECT * FROM admin WHERE username=? AND password=?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ss", $username, $password);
     $stmt->execute();
     $result = $stmt->get_result();
 
-    // Debugging: Check if query returned any rows
-    echo "Rows found: " . $result->num_rows . "<br>";
-
     if ($result->num_rows > 0) {
         $_SESSION['admin_username'] = $username;
-        header("Location: admin-dashboard.php");
+        header("Location: admin-dashboard.php"); // Redirect after login
         exit();
     } else {
         $error = "Invalid username or password!";
@@ -69,24 +54,18 @@ $conn->close();
 <body>
     <div class="login-container">
         <h2>Admin Login</h2>
-
+        
         <?php if (!empty($error)) { echo "<p style='color: red;'>$error</p>"; } ?>
 
         <form action="login.php" method="POST">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
-
+            
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
-
+            
             <button type="submit" class="btn-dark-pink">Login</button>
         </form>
     </div>
 </body>
 </html>
-
-<?php
-// Close the database connection
-$conn->close();
-?>
-
