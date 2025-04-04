@@ -30,15 +30,9 @@
   </head>
 
   <body>
+
+  <?php include('header.php'); ?>
     <main>
-      <div id="header"></div>
-<script>
-    fetch("header.html")
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById("header").innerHTML = data;
-        });
-</script>
 
 
       <div

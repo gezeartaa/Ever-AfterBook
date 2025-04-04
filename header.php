@@ -8,10 +8,58 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous" defer></script>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
-    <link rel="stylesheet" href="css/style.css" />
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" />
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+Oriya" rel="stylesheet" />
-    <link rel="stylesheet" href="css/custom.css" />
+    <style>
+        a{
+          text-decoration: none;
+        }
+        .navbar {
+          /* position: fixed; */
+          top: 0;
+          left: 0;
+          right: 0;
+          width: 100%;
+          box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+          border: 0;
+          background-color: #ecc5e3;
+        
+          z-index: 100;
+        }
+        .nav-pills .nav-item .nav-link:not(.active) {
+          background-color: transparent;
+          border-radius: 0;
+          box-shadow: none;
+        
+          color: black;
+        }
+        
+        .nav-pills .nav-item .nav-link {
+          box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+          background-color: #d36b7f;
+          border-radius: 0;
+          color: white;
+        }
+        
+        .tab-content {
+          height: 100%;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+        }
+        .accordion {
+          width: 100%;
+          margin: 0;
+        }
+        .navbar-brand {
+          font-size: x-large;
+          font-weight: bold;
+        }
+
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -23,10 +71,10 @@
             <div class="collapse navbar-collapse justify-content-lg-end" id="navbarSupportedContent">
                 <ul class="nav nav-pills align-right flex-column flex-lg-row p-2" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link active" href="index.html">Home</a>
+                        <a class="nav-link active" href="index.php">Home</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="venues.html">Venues</a>
+                        <a class="nav-link" href="venues.php">Venues</a>
                     </li>
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" href="about.html">About</a>

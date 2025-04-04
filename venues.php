@@ -1,10 +1,10 @@
 <?php
 // Include the database connection
-if ($_SERVER['SERVER_NAME'] == 'localhost') {
-    include('db_local.php'); // Use local connection for local testing
-} else {
-    include('db_config.php'); // Use remote connection for live site
-}
+// if ($_SERVER['SERVER_NAME'] == 'localhost') {
+//     include('db_local.php'); // Use local connection for local testing
+// } else {
+    include('db_connection.php'); // Use remote connection for live site
+// }
 
 // SQL query to fetch all venues
 $sql = "SELECT * FROM venues";
@@ -67,6 +67,8 @@ $result = $conn->query($sql); ?>
     </style>
 </head>
 <body>
+
+<?php include('header.php'); ?>
 
 
     <h1 class="title">Our Venues</h1>

@@ -1,15 +1,14 @@
 <?php
-$servername = "sql103.infinityfree.com";
-$username = "if0_38648351";
-$password = "8c3Ygw1f2phuy2s";
-$dbname = "if0_38648351_everafterbook";
+$servername = "sql7.freesqldatabase.com";
+$username = "sql7771296";  //username (krejt qeto ti jep kru e qel databazen ti gjeneron vete)
+$password = "fdHuhExPWl";       // passwordi
+$dbname = "sql7771296"; //emri i databazes   
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = mysqli_connect($servername, $username, $password, $dbname);
 
 // Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
 echo "Connected successfully";
 ?>
