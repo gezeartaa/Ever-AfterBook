@@ -1,9 +1,5 @@
 <?php
-if ($_SERVER['SERVER_NAME'] == 'localhost') {
-    include('db_local.php'); // Use local connection for local testing
-} else {
-    include('db_config.php'); // Use remote connection for live site
-}
+include('db_connection.php'); 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $venue_id = isset($_POST["venue_id"]) ? intval($_POST["venue_id"]) : NULL;
@@ -18,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Prepare the SQL query
-    $stmt = $conn->prepare("INSERT INTO Reservation_Application 
+    $stmt = $conn->prepare("INSERT INTO reservation_application 
         (venue_id, client_name, client_email, event_date, others, status) 
         VALUES (?, ?, ?, ?, ?, 'Pending')");
     

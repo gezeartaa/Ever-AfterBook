@@ -1,9 +1,5 @@
 <?php
-if ($_SERVER['SERVER_NAME'] == 'localhost') {
-    include('db_local.php'); // Use local connection for local testing
-} else {
-    include('db_config.php'); // Use remote connection for live site
-}
+include('db_connection.php'); 
 
 // Check if 'id' is present in the URL
 if (isset($_GET['id'])) {
