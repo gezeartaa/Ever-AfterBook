@@ -1,18 +1,5 @@
 <?php
-session_start();
-
-$servername = "sql7.freesqldatabase.com";
-$username = "sql7771296";
-$password = "fdHuhExPWl";
-$dbname = "sql7771296";
-
-// Connect to database
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-
-$error = '';
+include('db_connection.php'); 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $admin_user = mysqli_real_escape_string($conn, $_POST['username']);

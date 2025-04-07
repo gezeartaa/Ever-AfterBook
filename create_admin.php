@@ -1,13 +1,5 @@
 <?php
-$servername = "sql7.freesqldatabase.com";
-$username = "sql7771296";
-$password = "fdHuhExPWl";
-$dbname = "sql7771296";
-
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+include('db_connection.php'); 
 
 // Define admin credentials
 $new_user = 'admin123';
