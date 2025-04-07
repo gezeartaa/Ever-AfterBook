@@ -100,4 +100,4 @@ $result = $conn->query($sql); ?>
 <?php
 // Close the database connection
 $conn->close();
-?>
+?> 
