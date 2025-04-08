@@ -20,14 +20,14 @@
   <style>
     .footer-content {
       padding: 20px;
-      background-color: #1a1a1a;
-      color: white;
+      background-color: #f7d8db;
+      color: black;
       text-align: center;
       font-size: 14px;
     }
   
     .footer-content a {
-      color: #f9eff1;
+      color: black;
       text-decoration: none;
     }
   
