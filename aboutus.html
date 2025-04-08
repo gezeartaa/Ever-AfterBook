@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us | Ever After Weddings</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      background-image: url('images/aboutusbg.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    main {
+      position: relative;
+      padding: 30px;
+      max-width: 1000px;
+      margin: 40px auto;
+      background-color: #ffffffee;
+      border-radius: 10px;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    footer {
+      text-align: center;
+      background-color: #1a1a1a;
+      color: white;
+      padding: 15px;
+    }
+
+    .labelText {
+      font-size: 26px;
+      font-family: 'Playfair Display', serif;
+      margin-top: 40px;
+      color: #3e2c30;
+    }
+
+    .desc-text {
+      font-size: 16px;
+      line-height: 1.6em;
+      color: #333;
+    }
+
+    .highlight {
+      background-color: #f9eff1c2;
+      padding: 20px;
+      border-left: 5px solid #705e64;
+      margin: 30px 0;
+    }
+
+    .team-member {
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+      background-color: #f8f8f8;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+      margin-bottom: 20px;
+      max-width: 100%;
+      height: 120px; /* Ensuring consistent height */
+    }
+
+    .team-member:hover {
+      transform: scale(1.02);
+    }
+
+    .team-member img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      margin-right: 15px;
+      border: 2px solid #705e64;
+      object-fit: cover;
+    }
+
+    .team-member .member-info {
+      max-width: 80%; /* Ensuring text stays within bounds */
+    }
+
+    .team-member .member-info strong {
+      font-size: 18px;
+      color: #705e64;
+    }
+
+    .card-title {
+      color: #705e64;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .card-title:hover {
+      color: palevioletred;
+    }
+  </style>
+</head>
+<body>
+  <div id="header"></div>
+
+  <script>
+    fetch('header.php')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header').innerHTML = data;
+        const burger = document.getElementById('burgr');
+        if (burger) {
+          burger.addEventListener('click', function () {
+            var x = document.getElementById('myTopnav');
+            if (x.className === 'topnav') {
+              x.className += ' responsive';
+            } else {
+              x.className = 'topnav';
+            }
+          });
+        }
+      })
+      .catch(error => console.error('Error loading header:', error));
+  </script>
+
+  <main>
+    <h2 class="labelText">Our Love Story</h2>
+    <p class="desc-text">
+      Welcome to <u>Ever After Weddings</u>, where dream venues come to life. Founded in 2024, our journey began with a vision to create breathtaking weddings that couples and their guests would never forget. From grand halls to rustic gardens, we believe your special day deserves the perfect setting.
+    </p>
+
+    <h2 class="labelText">Our Mission</h2>
+    <p class="desc-text">
+      At Ever After Weddings, we’re dedicated to providing curated wedding venues and exceptional planning services that turn your vision into reality. Whether you dream of an elegant ballroom or a cozy outdoor celebration, we make it unforgettable.
+    </p>
+
+    <div class="highlight">
+      <h3>Why Choose Us?</h3>
+      <ul class="desc-text">
+        <li>Handpicked wedding venues tailored to your theme and size.</li>
+        <li>Expert planners and event coordinators by your side.</li>
+        <li>Passion for creating memorable, magical celebrations.</li>
+      </ul>
+    </div>
+
+    <h2 class="labelText">Our Values</h2>
+    <ul class="desc-text">
+      <li><em>Romance:</em> We celebrate love in all its beautiful forms.</li>
+      <li><em>Commitment:</em> We walk with you every step of your journey.</li>
+      <li><em>Elegance:</em> Every detail is curated with style and grace.</li>
+    </ul>
+
+    <h2 class="labelText">Meet the Dream Team</h2>
+    <p class="desc-text">Our team of creative professionals are passionate about turning wedding dreams into reality. Meet the visionaries behind the magic:</p>
+
+    <div class="team-member">
+      <img src="images/logo2.jpg" alt="Gezearta Abazi">
+      <div class="member-info">
+        <strong>Gezearta Abazi</strong><br>
+        Venue Specialist<br>
+        Gezearta blends charm and organization to help couples find their perfect match—venue-wise!
+      </div>
+    </div>
+
+    <div class="team-member">
+      <img src="images/logo2.jpg" alt="Yllza Kryeziu">
+      <div class="member-info">
+        <strong>Yllza Kryeziu</strong><br>
+        Lead Wedding Planner<br>
+        Yllza brings a flair for style and storytelling to every celebration she helps create.
+      </div>
+    </div>
+
+    <h2 class="labelText">Let’s Plan Together</h2>
+    <p class="desc-text">
+      We'd love to hear your story and help bring it to life. Whether you’re newly engaged or deep into planning, reach out anytime and <a href="#footer" class="card-title">get in touch</a>.
+    </p>
+  </main>
+
+  <footer>
+    <div id="footer"></div>
+  </footer>
+
+  <script>
+    window.onload = function () {
+      fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('footer').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading footer:', error));
+    };
+  </script>
+</body>
+</html>

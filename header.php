@@ -77,7 +77,7 @@
                         <a class="nav-link" href="venues.php">Venues</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="about.html">About</a>
+                        <a class="nav-link" href="aboutus.html">About</a>
                     </li>
                 </ul>
             </div>
