@@ -107,15 +107,23 @@ if (isset($_GET['id'])) {
         .formcontainer {
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
+            align-self: center;
+            justify-content: center;
+            max-width: 90%;
+            margin: 20px auto;
+            padding: 20px;
+            padding-top: 50px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .form {
             display: flex;
             flex-direction: column;
-            width: 70%;
-            max-width: 600px;
+            width: 90%;
+            /* max-width: 600px; */
             margin: 30px 0;
         }
 
@@ -126,7 +134,7 @@ if (isset($_GET['id'])) {
 
         .form button {
             padding: 10px;
-            background-color: #007bff;
+            background-color:rgba(206, 122, 161, 0.93);
             color: white;
             border: none;
             border-radius: 5px;
@@ -134,7 +142,7 @@ if (isset($_GET['id'])) {
         }
 
         .form button:hover {
-            background-color: #0056b3;
+            background-color:rgba(151, 80, 113, 0.93);
         }
 
         .gallery-container {
