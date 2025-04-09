@@ -124,5 +124,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
         <?php if (!empty($error)) { echo "<p class='error-message'>" . htmlspecialchars($error) . "</p>"; } ?>
     </div>
+    <?php include('footer.php'); ?>
 </body>
 </html>
