@@ -141,6 +141,23 @@ table tr:hover td {
     background-color: #9b4f60;
 }
 
+.approved {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 10px 20px;
+    text-decoration: none;
+    background-color: #B76E79;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.approved:hover {
+    background-color: #9b4f60;
+}
+
     </style>
 </head>
 <body>
@@ -182,6 +199,7 @@ table tr:hover td {
     <?php endwhile; ?>
 </table>
 
+<a class="approved" href="approved_reservations.php">View Approved Reservations</a>
 <a class="back" href="dashboard.php">← Back to Dashboard</a>
 
 <script>
