@@ -1,6 +1,5 @@
 <?php
 include('db_connection.php'); 
-session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $admin_user = mysqli_real_escape_string($conn, $_POST['username']);
@@ -13,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($admin_pass, $row['password'])) {
             $_SESSION['admin_id'] = $row['admin_id'];
             $_SESSION['admin_username'] = $row['username'];
-            header("Location: dashboard.php");
+            header("Location: approve.php");
             exit();
         } else {
             $error = "Invalid password.";
