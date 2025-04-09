@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         foreach ($_FILES['images']['tmp_name'] as $index => $tmp_name) {
             if ($_FILES['images']['error'][$index] === 0) {
                 $image_name = time() . "_" . basename($_FILES['images']['name'][$index]);
-                $target_dir = "uploads/";
+                $target_dir = "images/venue images/";
                 if (!file_exists($target_dir)) {
                     mkdir($target_dir, 0777, true);
                 }
