@@ -10,13 +10,14 @@ if (!isset($_SESSION['admin_id'])) {
 // Fetch applications from the database
 $applications = $conn->query("SELECT * FROM reservation_application");
 ?>
+<?php include('header.php'); ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - Wedding Reservations</title>
+    <title>Wedding Reservations</title>
     <link href="https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&family=Times+New+Roman&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>

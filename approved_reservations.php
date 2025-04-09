@@ -25,6 +25,7 @@ if (!$result) {
     die("Query failed: " . mysqli_error($conn));
 }
 ?>
+<?php include('header.php'); ?>
 
 <!DOCTYPE html>
 <html>
