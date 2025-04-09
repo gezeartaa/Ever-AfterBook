@@ -1,11 +1,11 @@
 <?php
 session_start();
-
-// Redirect to login if not logged in
+include('db_connection.php');
 if (!isset($_SESSION['admin_id'])) {
     header("Location: login.php");
-    exit();
+    exit;
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -14,8 +14,11 @@ if (!isset($_SESSION['admin_id'])) {
     <title>Admin Dashboard</title>
 </head>
 <body>
-    <h2>Welcome, <?php echo htmlspecialchars($_SESSION['admin_username']); ?>!</h2>
+    <h2>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h2>
     <p>This is the admin dashboard.</p>
+
+    <a href="approved_reservations.php">View Approved Reservations</a>
+
     <a href="logout.php">Logout</a>
 </body>
 </html>
