@@ -1,5 +1,6 @@
 <?php
 include('db_connection.php'); 
+session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $admin_user = mysqli_real_escape_string($conn, $_POST['username']);
@@ -124,6 +125,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
         <?php if (!empty($error)) { echo "<p class='error-message'>" . htmlspecialchars($error) . "</p>"; } ?>
     </div>
-    <?php include('footer.php'); ?>
+    
 </body>
 </html>
