@@ -22,141 +22,156 @@ $applications = $conn->query("SELECT * FROM reservation_application");
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
         body {
-    font-family: 'Georgia', serif;
-    background-color: #f8f0f2; /* Soft pink background */
-    padding: 20px;
-    margin: 0;
-    color: #3a3a3a;
-}
+            font-family: 'Georgia', serif;
+            background-color: #f8f0f2; /* Soft pink background */
+            /* padding: 20px; */
+            margin: 0;
+            color: #3a3a3a;
+        }
 
-h2 {
-    color: #B76E79; /* Elegant pinkish hue for heading */
-    text-align: center;
-    font-size: 36px;
-    font-weight: 700;
-    margin-bottom: 30px;
-    font-family: 'Times New Roman', serif;
-}
+        .container{
+            display: flex;
+            flex-direction: column;
+            width: 90%;
+            align-self: center;
+            /* align-items: center; */
 
-table {
-    border-collapse: collapse;
-    width: 100%;
-    margin: 0 auto;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    background-color: #ffffff;
-    border-radius: 10px;
-    overflow: hidden;
-}
+        }
 
-th, td {
-    padding: 15px;
-    border: 1px solid #e3e3e3;
-    text-align: left;
-}
+        h2 {
+            color: #B76E79; /* Elegant pinkish hue for heading */
+            text-align: center;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            font-family: 'Times New Roman', serif;
+        }
 
-th {
-    background-color: #B76E79; /* Soft pink */
-    color: white;
-    font-size: 18px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 0 auto;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+        }
 
-td {
-    background-color: #fafafa;
-    font-size: 16px;
-}
+        th, td {
+            padding: 15px;
+            border: 1px solid #e3e3e3;
+            text-align: left;
+        }
 
-td.status {
-    font-weight: bold;
-    color: #2d4d76;
-}
+        th {
+            background-color: #B76E79; /* Soft pink */
+            color: white;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-td button {
-    padding: 8px 20px;
-    margin: 5px;
-    border: none;
-    border-radius: 5px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+        td {
+            background-color: #fafafa;
+            font-size: 16px;
+        }
 
-td button[name="action"][value="approve"] {
-    background-color: #77b300; /* Soft green */
-    color: white;
-}
+        td.status {
+            font-weight: bold;
+            color: #2d4d76;
+        }
 
-td button[name="action"][value="deny"] {
-    background-color: #e74c3c; /* Soft red */
-    color: white;
-}
+        td button {
+            padding: 8px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
 
-td button:hover {
-    opacity: 0.8;
-}
+        td button[name="action"][value="approve"] {
+            background-color: #77b300; /* Soft green */
+            color: white;
+        }
 
-td span {
-    font-style: italic;
-    color: #888;
-}
+        td button[name="action"][value="deny"] {
+            background-color: #e74c3c; /* Soft red */
+            color: white;
+        }
 
-table tr:nth-child(even) td {
-    background-color: #f9f9f9;
-}
+        td button:hover {
+            opacity: 0.8;
+        }
 
-table tr:hover td {
-    background-color: #fff0f5; /* Very light pink on hover */
-}
+        td span {
+            font-style: italic;
+            color: #888;
+        }
 
-@media (max-width: 768px) {
-    table {
-        font-size: 14px;
-    }
+        table tr:nth-child(even) td {
+            background-color: #f9f9f9;
+        }
 
-    td button {
-        padding: 6px 16px;
-        font-size: 12px;
-    }
+        table tr:hover td {
+            background-color: #fff0f5; /* Very light pink on hover */
+        }
 
-    h2 {
-        font-size: 28px;
-    }
-}
+        @media (max-width: 768px) {
+            table {
+                font-size: 14px;
+            }
 
-.back {
-    display: inline-block;
-    margin-top: 30px;
-    padding: 10px 20px;
-    text-decoration: none;
-    background-color: #B76E79;
-    color: white;
-    font-weight: bold;
-    border-radius: 5px;
-    text-align: center;
-    transition: background-color 0.3s ease;
-}
+            td button {
+                padding: 6px 16px;
+                font-size: 12px;
+            }
 
-.back:hover {
-    background-color: #9b4f60;
-}
+            h2 {
+                font-size: 28px;
+            }
+        }
 
-.approved {
-    display: inline-block;
-    margin-top: 30px;
-    padding: 10px 20px;
-    text-decoration: none;
-    background-color: #B76E79;
-    color: white;
-    font-weight: bold;
-    border-radius: 5px;
-    text-align: center;
-    transition: background-color 0.3s ease;
-}
+        .back {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            text-decoration: none;
+            background-color: #B76E79;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
 
-.approved:hover {
-    background-color: #9b4f60;
-}
+        .back:hover {
+            background-color: #9b4f60;
+        }
+
+        .approved {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            text-decoration: none;
+            background-color: #B76E79;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .approved:hover {
+            background-color: #9b4f60;
+        }
+        .button_wrapper{
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
 
     </style>
 </head>
@@ -164,6 +179,7 @@ table tr:hover td {
 
 <h2>Pending Wedding Reservations</h2>
 
+<div class="container">
 <table>
     <tr>
         <th>ID</th>
@@ -199,8 +215,10 @@ table tr:hover td {
     <?php endwhile; ?>
 </table>
 
+<div class="button_wrapper">
 <a class="approved" href="approved_reservations.php">View Approved Reservations</a>
 <a class="back" href="dashboard.php">← Back to Dashboard</a>
+</div>
 
 <script>
     function handleAction(application_id, action) {
@@ -226,6 +244,9 @@ table tr:hover td {
         };
     }
 </script>
+</div>
+
+<?php include('footer.php'); ?>
 
 </body>
 </html>
