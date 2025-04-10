@@ -89,7 +89,7 @@
                         <a class="nav-link" href="manage_venues.php">Venues</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="manage_reservations.html">Reservations</a>
+                        <a class="nav-link" href="approve.php">Reservations</a>
                     </li>
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" href="manage_admins.php">Admins</a>

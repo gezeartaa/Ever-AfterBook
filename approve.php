@@ -10,7 +10,7 @@ if (!isset($_SESSION['admin_id'])) {
 // Fetch applications from the database
 $applications = $conn->query("SELECT * FROM reservation_application");
 ?>
-<?php include('header.php'); ?>
+<?php include('header_admin.php'); ?>
 
 <!DOCTYPE html>
 <html lang="en">

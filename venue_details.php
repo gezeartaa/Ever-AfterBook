@@ -1,14 +1,13 @@
 <?php
-include('db_connection.php'); 
+include('db_connection.php');
 
 // Check if 'id' is present in the URL
 if (isset($_GET['id'])) {
-    $venue_id = intval($_GET['id']); // Sanitize input
+    $venue_id = intval($_GET['id']);
 
-    // Query to fetch venue details
+    // Fetch venue details
     $sql = "SELECT * FROM venues WHERE venue_id = $venue_id";
     $result = $conn->query($sql);
-
     if ($result->num_rows > 0) {
         $venue = $result->fetch_assoc();
     } else {
@@ -16,26 +15,31 @@ if (isset($_GET['id'])) {
         exit;
     }
 
-    // Fetch all images for this venue
+    // Fetch venue images
     $img_sql = "SELECT * FROM venue_images WHERE venue_id = $venue_id";
     $img_result = $conn->query($img_sql);
-
-    $main_image = null;
+    $main_image = 'images/default_venue.jpg';
     $gallery_images = [];
 
-    if ($img_result->num_rows > 0) {
-        while ($img = $img_result->fetch_assoc()) {
-            if ($img['is_main']) {
-                $main_image = $img['image_url'];
-            } else {
-                $gallery_images[] = $img['image_url'];
-            }
+    while ($img = $img_result->fetch_assoc()) {
+        if ($img['is_main']) {
+            $main_image = $img['image_url'];
+        } else {
+            $gallery_images[] = $img['image_url'];
         }
     }
 
-    // Use a default image if no main image is found
-    if (!$main_image) {
-        $main_image = 'images/default_venue.jpg';
+    // Fetch booked dates
+    $booked_sql = "
+        SELECT A.event_date
+        FROM reservation R
+        JOIN reservation_application A ON R.application_id = A.application_id
+        WHERE A.venue_id = $venue_id
+    ";
+    $booked_result = $conn->query($booked_sql);
+    $booked_dates = [];
+    while ($row = $booked_result->fetch_assoc()) {
+        $booked_dates[] = $row['event_date'];
     }
 
 } else {
@@ -48,7 +52,6 @@ if (isset($_GET['id'])) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($venue['name']); ?></title>
     <style>
         a {
@@ -173,61 +176,79 @@ if (isset($_GET['id'])) {
 </head>
 <body>
 
-    <!-- Main image -->
-    
+<?php include('header.php'); ?>
 
-    <!-- Venue details -->
-    <div class="venue-details">
-        <div class="main-image-container" style="background-image: url('<?php echo $main_image; ?>');">
-        </div>
+<!-- Main image and venue info -->
+<div class="venue-details">
+    <div class="main-image-container" style="background-image: url('<?php echo $main_image; ?>');"></div>
 
-        <h1><?php echo htmlspecialchars($venue['name']); ?></h1>
-        <div class="textbox">
-            <p><strong>Description:</strong> <?php echo htmlspecialchars($venue['description']); ?></p>
-            <p><strong>Location:</strong> <?php echo htmlspecialchars($venue['location']); ?></p>
-            <p><strong>Price:</strong> $<?php echo htmlspecialchars($venue['price']); ?></p>
-        </div>
-        <a href="venues.php" class="back-link">← Back to Venues</a>
-
-        <!-- Gallery -->
-        <?php if (!empty($gallery_images)): ?>
-            <div class="gallery-container">
-                <h2>More Photos</h2>
-                <div class="gallery-scroll">
-                    <?php foreach ($gallery_images as $img): ?>
-                        <img src="<?php echo $img; ?>" class="gallery-image" alt="Venue image">
-                    <?php endforeach; ?>
-                </div>
-            </div>
-        <?php endif; ?>
-
+    <h1><?php echo htmlspecialchars($venue['name']); ?></h1>
+    <div class="textbox">
+        <p><strong>Description:</strong> <?php echo htmlspecialchars($venue['description']); ?></p>
+        <p><strong>Location:</strong> <?php echo htmlspecialchars($venue['location']); ?></p>
+        <p><strong>Price:</strong> $<?php echo htmlspecialchars($venue['price']); ?></p>
     </div>
+    <a href="venues.php" class="back-link">← Back to Venues</a>
 
-    <!-- Reservation form -->
-    <div class="formcontainer">
-        <form class="form" action="submit_reservation.php" method="POST">
-            <input type="hidden" name="venue_id" value="<?php echo $venue['venue_id']; ?>">
-
-            <label for="client_name">Your Name:</label>
-            <input type="text" id="client_name" name="client_name" required>
-
-            <label for="client_email">Your Email:</label>
-            <input type="email" id="client_email" name="client_email" required>
-
-            <label for="event_date">Event Date:</label>
-            <input type="date" id="event_date" name="event_date" required>
-
-            <label for="others">Additional Requests (Optional):</label>
-            <textarea id="others" name="others"></textarea>
-
-            <button type="submit">Request Reservation</button>
-        </form>
+    <?php if (!empty($gallery_images)): ?>
+    <div class="gallery-container">
+        <h2>More Photos</h2>
+        <div class="gallery-scroll">
+            <?php foreach ($gallery_images as $img): ?>
+                <img src="<?php echo $img; ?>" class="gallery-image" alt="Venue image">
+            <?php endforeach; ?>
+        </div>
     </div>
+    <?php endif; ?>
+</div>
 
+<!-- Reservation form -->
+<div class="formcontainer">
+    <form class="form" action="submit_reservation.php" method="POST" onsubmit="return validateDate();">
+        <input type="hidden" name="venue_id" value="<?php echo $venue['venue_id']; ?>">
+
+        <label for="client_name">Your Name:</label>
+        <input type="text" id="client_name" name="client_name" required>
+
+        <label for="client_email">Your Email:</label>
+        <input type="email" id="client_email" name="client_email" required>
+
+        <label for="event_date">Event Date:</label>
+        <input type="date" id="event_date" name="event_date" required>
+
+        <label for="others">Additional Requests (Optional):</label>
+        <textarea id="others" name="others"></textarea>
+
+        <button type="submit">Request Reservation</button>
+    </form>
+</div>
+
+<script>
+    const bookedDates = <?php echo json_encode($booked_dates); ?>;
+    const eventDateInput = document.getElementById("event_date");
+
+    function validateDate() {
+        const selected = eventDateInput.value;
+        if (bookedDates.includes(selected)) {
+            alert("This date is already reserved. Please choose another date.");
+            return false;
+        }
+        return true;
+    }
+
+    // Optional: visually disable booked dates (works better with custom date pickers)
+    eventDateInput.addEventListener("input", () => {
+        const selected = eventDateInput.value;
+        if (bookedDates.includes(selected)) {
+            alert("This date is already reserved.");
+            eventDateInput.value = "";
+        }
+    });
+</script>
+
+<?php include('footer.php'); ?>
 
 </body>
 </html>
 
-<?php
-$conn->close();
-?>
+<?php $conn->close(); ?>

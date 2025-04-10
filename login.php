@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($admin_pass, $row['password'])) {
             $_SESSION['admin_id'] = $row['admin_id'];
             $_SESSION['admin_username'] = $row['username'];
-            header("Location: approve.php");
+            header("Location: dashboard.php");
             exit();
         } else {
             $error = "Invalid password.";
