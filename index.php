@@ -61,6 +61,7 @@
       .main-content {
   background: url('images/aboutusbg.jpg') no-repeat center center/cover;
   height: 100vh;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
