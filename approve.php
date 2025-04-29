@@ -248,5 +248,36 @@ $applications = $conn->query("SELECT * FROM reservation_application");
 
 <?php include('footer.php'); ?>
 
+<script>
+    function handleAction(application_id, action) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "handle_action.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send("application_id=" + application_id + "&action=" + action);
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var response = xhr.responseText.trim(); // Trim to avoid whitespace issues
+                var statusCell = document.getElementById("status-" + application_id);
+                var actionsCell = document.getElementById("actions-" + application_id);
+
+                if (response === "approved") {
+                    statusCell.innerHTML = "Approved";
+                    actionsCell.innerHTML = "<span>No action needed</span>";
+                } else if (response === "denied") {
+                    statusCell.innerHTML = "Denied";
+                    actionsCell.innerHTML = "<span>No action needed</span>";
+                } else {
+                    alert("Unexpected response: " + response);
+                }
+            } else if (xhr.readyState == 4) {
+                alert("Request failed: " + xhr.status + " - " + xhr.responseText);
+            }
+        };
+    }
+
+</script>
+
+
 </body>
 </html>

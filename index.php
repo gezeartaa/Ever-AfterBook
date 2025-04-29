@@ -251,13 +251,13 @@ h1 {
         <div id="venueCarousel" class="carousel slide venue-carousel" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="images/venue images/eden/eden1.jpg" class="d-block w-100" alt="Venue 1">
+              <img src="uploads/1744163559_starrymain.png" class="d-block w-100" alt="Venue 1">
             </div>
             <div class="carousel-item">
-              <img src="images/venue images/eden/eden2.jpg" class="d-block w-100" alt="Venue 2">
+              <img src="uploads/1744375447_edenmain.jpg" class="d-block w-100" alt="Venue 2">
             </div>
             <div class="carousel-item">
-              <img src="images/venue images/eden/eden3.jpg" class="d-block w-100" alt="Venue 3">
+              <img src="uploads/1744375469_wintermain.jpg" class="d-block w-100" alt="Venue 3">
             </div>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#venueCarousel" data-bs-slide="prev">
@@ -290,10 +290,10 @@ h1 {
 
       <!-- Gallery Section -->
       <div class="gallery">
-        <img src="images/venue images/winter/winter1.jpg" alt="Gallery Image 1">
-        <img src="images/venue images/winter/winter2.jpg" alt="Gallery Image 2">
-        <img src="images/venue images/winter/winter3.jpg" alt="Gallery Image 3">
-        <img src="images/venue images/winter/winter4.jpg" alt="Gallery Image 4">
+        <img src="uploads/1744163558_starry1.jpg" alt="Gallery Image 1">
+        <img src="uploads/1744375447_edenmain.jpg" alt="Gallery Image 2">
+        <img src="uploads/1744375469_winter1.jpg" alt="Gallery Image 3">
+        <img src="uploads/1744375929_ranchmain.jpg" alt="Gallery Image 4">
       </div>
 
       <!-- Contact Section -->

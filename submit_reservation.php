@@ -1,5 +1,6 @@
 <?php
-include('db_connection.php'); 
+include('db_connection.php');
+include('includes/reservation_functions.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $venue_id = isset($_POST["venue_id"]) ? intval($_POST["venue_id"]) : NULL;
@@ -8,26 +9,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $event_date = trim($_POST["event_date"]);
     $others = trim($_POST["others"]);
 
-    // Validate required fields
-    if (empty($venue_id) || empty($client_name) || empty($client_email) || empty($event_date)) {
-        die("<p>Error: Required fields are missing.</p><a href='index.php'>Back</a>");
-    }
+    $result = submitReservation($conn, $venue_id, $client_name, $client_email, $event_date, $others);
 
-    // Prepare the SQL query
-    $stmt = $conn->prepare("INSERT INTO reservation_application 
-        (venue_id, client_name, client_email, event_date, others, status) 
-        VALUES (?, ?, ?, ?, ?, 'Pending')");
-    
-    $stmt->bind_param("issss", $venue_id, $client_name, $client_email, $event_date, $others);
-
-    if ($stmt->execute()) {
-        header("Location: reservation_success.php"); // Redirect to success page
+    if ($result['success']) {
+        header("Location: reservation_success.php");
         exit();
     } else {
-        echo "<p>Error submitting reservation: " . $conn->error . "</p>";
+        echo "<p>Error submitting reservation: " . $result['error'] . "</p><a href='index.php'>Back</a>";
     }
 
-    $stmt->close();
     $conn->close();
 } else {
     echo "<p>Invalid request.</p>";
