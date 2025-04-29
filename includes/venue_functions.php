@@ -35,4 +35,31 @@ function addVenue($conn, $data, $files) {
     return ['success' => true];
 }
 
+
+function deleteVenue($conn, $venue_id) {
+    // Check if there are any active reservation applications for this venue
+    $reservation_application_check = mysqli_query($conn, "SELECT COUNT(*) AS count FROM Reservation_Application WHERE venue_id = $venue_id AND status != 'Denied'");
+    $application_count = mysqli_fetch_assoc($reservation_application_check)['count'];
+
+    if ($application_count > 0) {
+        return ['success' => false, 'error' => 'This venue cannot be deleted because there are active reservation applications.'];
+    }
+
+    // Optionally delete image files from server
+    $result = mysqli_query($conn, "SELECT image_url FROM venue_images WHERE venue_id = $venue_id");
+    while ($row = mysqli_fetch_assoc($result)) {
+        if (file_exists($row['image_url'])) {
+            unlink($row['image_url']);
+        }
+    }
+
+    // Delete venue (cascades to images, applications, reservations)
+    if (mysqli_query($conn, "DELETE FROM venues WHERE venue_id = $venue_id")) {
+        return ['success' => true];
+    } else {
+        return ['success' => false, 'error' => mysqli_error($conn)];
+    }
+}
+
+
 ?>

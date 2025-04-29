@@ -1,29 +1,30 @@
 <?php
 include('db_connection.php');
+include('includes/venue_functions.php');
 session_start();
 
+// Ensure the admin is logged in
 if (!isset($_SESSION['admin_id'])) {
     header("Location: login.php");
     exit();
 }
 
+// Ensure a venue ID is provided
 if (!isset($_GET['id'])) {
     die("No venue ID provided.");
 }
 
 $venue_id = intval($_GET['id']);
 
-// Optionally delete image files from server
-$result = mysqli_query($conn, "SELECT image_url FROM venue_images WHERE venue_id = $venue_id");
-while ($row = mysqli_fetch_assoc($result)) {
-    if (file_exists($row['image_url'])) {
-        unlink($row['image_url']);
-    }
+// Call the deleteVenue function
+$result = deleteVenue($conn, $venue_id);
+
+// Check the result and handle success or failure
+if ($result['success']) {
+    header("Location: manage_venues.php?success=Venue+deleted+successfully.");
+} else {
+    // If there's an error, return to the previous page with an error message
+    header("Location: manage_venues.php?error=" . urlencode($result['error']));
 }
-
-// Delete venue (cascades to images, applications, reservations)
-mysqli_query($conn, "DELETE FROM venues WHERE venue_id = $venue_id");
-
-header("Location: manage_venues.php");
 exit();
 ?>
