@@ -1,8 +1,8 @@
 <?php
 // test_reservation_functions.php
 
-include('../db_connection.php');
-include('../includes/reservation_functions.php');
+require_once(__DIR__ . '/../db_connection.php');
+require_once(__DIR__ . '/../includes/reservation_functions.php');
 
 echo "<h2>Testing Reservation Approval and Denial</h2>";
 

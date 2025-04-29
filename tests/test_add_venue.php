@@ -1,13 +1,14 @@
 <?php
-include('../db_connection.php');
-include('../includes/venue_functions.php');
+require_once(__DIR__ . '/../db_connection.php');
+require_once(__DIR__ . '/../includes/venue_functions.php');
 
 // Mock POST data
-$testData = [
+$_POST = [
     'name' => 'Test Venue',
     'location' => 'Test Location',
     'description' => 'This is a test venue for testing.',
     'capacity' => 100,
+    'price' => 2000.9,
     'main_image' => 0
 ];
 
@@ -22,8 +23,11 @@ $testFiles = [
     ]
 ];
 
+// Debug output for $_POST
+var_dump($_POST); // This will show you the contents of the $_POST array
+
 // Call the function
-$result = addVenue($conn, $testData, $testFiles);
+$result = addVenue($conn, $_POST, $testFiles);
 
 // Output result
 if ($result['success']) {

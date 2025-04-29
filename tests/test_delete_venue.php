@@ -1,6 +1,6 @@
 <?php
-include('../db_connection.php');
-include('../includes/venue_functions.php'); // Include the file with the deleteVenue function
+require_once(__DIR__ . '/../db_connection.php');
+require_once(__DIR__ . '/../includes/venue_functions.php'); // Include the file with the deleteVenue function
 
 // Test Case 1: Try to delete a venue with active reservations
 $venue_id_with_reservation = 1; // Adjust this to a venue ID with active reservations
