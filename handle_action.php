@@ -24,7 +24,7 @@ if ($action === 'approve') {
 }
 
 if ($result['success']) {
-    echo $action; // Sends back "approve" or "deny"
+    echo ($action === 'approve') ? 'approved' : 'denied'; // match JS exactly
 } else {
     http_response_code(500);
     echo "Error: " . $result['error'];

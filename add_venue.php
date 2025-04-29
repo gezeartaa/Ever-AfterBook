@@ -7,47 +7,17 @@ if (!isset($_SESSION['admin_id'])) {
     exit();
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $venue_name = mysqli_real_escape_string($conn, $_POST['name']);
-    $location = mysqli_real_escape_string($conn, $_POST['location']);
-    $description = mysqli_real_escape_string($conn, $_POST['description']);
-    $capacity = intval($_POST['capacity']);
+        include('includes/venue_functions.php');
 
-    // 1. Insert venue
-    $venue_sql = "INSERT INTO venues (name, location, description, capacity) 
-                  VALUES ('$venue_name', '$location', '$description', $capacity)";
-    
-    if (mysqli_query($conn, $venue_sql)) {
-        $venue_id = mysqli_insert_id($conn); // get the new venue ID
-
-        // 2. Handle image uploads
-        $main_image_index = isset($_POST['main_image']) ? intval($_POST['main_image']) : -1;
-
-        foreach ($_FILES['images']['tmp_name'] as $index => $tmp_name) {
-            if ($_FILES['images']['error'][$index] === 0) {
-                $image_name = time() . "_" . basename($_FILES['images']['name'][$index]);
-                $target_dir = "images/venue images/";
-                if (!file_exists($target_dir)) {
-                    mkdir($target_dir, 0777, true);
-                }
-
-                $target_file = $target_dir . $image_name;
-                move_uploaded_file($tmp_name, $target_file);
-
-                $is_main = ($index === $main_image_index) ? 1 : 0;
-
-                // Insert into venue_images
-                $img_sql = "INSERT INTO venue_images (venue_id, image_url, is_main) 
-                            VALUES ($venue_id, '$target_file', $is_main)";
-                mysqli_query($conn, $img_sql);
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $result = addVenue($conn, $_POST, $_FILES);
+            if ($result['success']) {
+                $success = "Venue and images uploaded successfully!";
+            } else {
+                $error = "Error adding venue: " . $result['error'];
             }
         }
 
-        $success = "Venue and images uploaded successfully!";
-    } else {
-        $error = "Error adding venue: " . mysqli_error($conn);
-    }
-}
 ?>
 
 
@@ -124,10 +94,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         .success { color: #2e7d32; }
         .error { color: #c62828; }
+
+        a{
+            text-decoration: none;
+            color: black;
+        }
+        .exit{
+            display: flex;
+            align-items: end;
+            flex-direction: column;
+            
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <div class="exit">
+            <a href="manage_venues.php">X</a>
+        </div>
         <h2>Add New Venue</h2>
         <form action="" method="POST" enctype="multipart/form-data">
             <label>Venue Name:</label>

@@ -24,37 +24,28 @@
     }
 
     // In reservation_functions.php
-    function approveReservationAction($conn, $application_id, $admin_id) {
-        // Approve the reservation
-        $stmt = $conn->prepare("UPDATE reservation_application SET status = ? WHERE application_id = ?");
-        $status = 'Approved';
-        $stmt->bind_param("si", $status, $application_id);
-        if (!$stmt->execute()) {
-            return ['success' => false, 'error' => $conn->error];
-        }
-
-        // Insert into the reservation table
+    function approveReservation($conn, $application_id, $admin_id) {
+        $stmt = $conn->prepare("UPDATE reservation_application SET status = 'Approved' WHERE application_id = ?");
+        if (!$stmt) return ['success' => false, 'error' => $conn->error];
+        $stmt->bind_param("i", $application_id);
+        if (!$stmt->execute()) return ['success' => false, 'error' => $conn->error];
+    
         $confirmed_date = date("Y-m-d");
-        $stmt = $conn->prepare("INSERT INTO reservation (application_id, admin_id, confirmed_date)
-                                VALUES (?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO reservation (application_id, admin_id, confirmed_date) VALUES (?, ?, ?)");
+        if (!$stmt) return ['success' => false, 'error' => $conn->error];
         $stmt->bind_param("iis", $application_id, $admin_id, $confirmed_date);
-        if (!$stmt->execute()) {
-            return ['success' => false, 'error' => $conn->error];
-        }
-
+        if (!$stmt->execute()) return ['success' => false, 'error' => $conn->error];
+    
         return ['success' => true];
     }
-
-    function denyReservationAction($conn, $application_id) {
-        // Deny the reservation
-        $stmt = $conn->prepare("UPDATE reservation_application SET status = ? WHERE application_id = ?");
-        $status = 'Denied';
-        $stmt->bind_param("si", $status, $application_id);
-        if (!$stmt->execute()) {
-            return ['success' => false, 'error' => $conn->error];
-        }
-
+    
+    function denyReservation($conn, $application_id) {
+        $stmt = $conn->prepare("UPDATE reservation_application SET status = 'Denied' WHERE application_id = ?");
+        if (!$stmt) return ['success' => false, 'error' => $conn->error];
+        $stmt->bind_param("i", $application_id);
+        if (!$stmt->execute()) return ['success' => false, 'error' => $conn->error];
+    
         return ['success' => true];
-    }
+    }    
 
 ?>
