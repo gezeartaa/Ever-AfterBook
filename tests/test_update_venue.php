@@ -1,60 +1,46 @@
 <?php
+// Include your DB connection and function files
 require_once(__DIR__ . '/../db_connection.php');
 require_once(__DIR__ . '/../includes/venue_functions.php');
 
-// Start the session to test session management
-session_start();
+// Choose an existing venue ID in your database
+$venue_id = 25; // Replace with a valid venue ID
 
-// Create a test venue first
-$venue_data = [
-    'name' => 'Test Venue',
-    'location' => 'Test Location',
-    'description' => 'Test Description',
-    'capacity' => 200,
-    'price' => 5000.00,
-    'main_image' => 0,  // The first image uploaded should be the main image
+// Prepare POST-like data
+$data = [
+    'name' => 'Test Venue Updated',
+    'location' => 'Updated Location',
+    'capacity' => 500,
+    'price' => 1500.00,
+    'description' => 'Updated description for test venue.',
 ];
 
-// Setup mock files for testing image upload
-$_FILES = [
-    'images' => [
-        'name' => ['test_image.jpg'],
-        'type' => ['image/jpeg'],
-        'tmp_name' => [__DIR__ . '/test_assets/test_image.jpg'],  // Make sure this path exists!
-        'error' => [0],
+// Paths to test images (ensure these files exist)
+$main_image_path = __DIR__ . '/test_assets/testimg3.jpg';
+$extra1 = __DIR__ . '/test_assets/testimg1.jpg';
+$extra2 = __DIR__ . '/test_assets/testimg2.jpg';
+
+// Simulate $_FILES array structure
+$files = [
+    'main_image' => [
+        'name' => basename($main_image_path),
+        'type' => mime_content_type($main_image_path),
+        'tmp_name' => $main_image_path,
+        'error' => 0,
+        'size' => filesize($main_image_path),
+    ],
+    'extra_images' => [
+        'name' => [basename($extra1), basename($extra2)],
+        'type' => [mime_content_type($extra1), mime_content_type($extra2)],
+        'tmp_name' => [$extra1, $extra2],
+        'error' => [0, 0],
+        'size' => [filesize($extra1), filesize($extra2)],
     ]
 ];
 
-// Add the venue to the database
-$response = addVenue($conn, $venue_data, $_FILES);
+// Run the update function in test mode
+$result = updateVenue($conn, $venue_id, $data, $files, true);
 
-if ($response['success']) {
-    // Fetch the last inserted venue ID for further testing
-    $venue_id = mysqli_insert_id($conn);
-    
-    // Now we will attempt to update the venue
-    $update_data = [
-        'name' => 'Updated Test Venue',
-        'location' => 'Updated Location',
-        'description' => 'Updated Description',
-        'capacity' => 250,
-        'price' => 5500.00,
-    ];
-
-    // Mock the image upload for the update
-    $_FILES['images']['tmp_name'] = [__DIR__ . '/test_assets/test_image.jpg'];
-    $_FILES['images']['name'] = ['test_image.jpg'];
-    
-    // Call the updateVenue function (assuming it's defined in your functions)
-    $update_response = updateVenue($conn, $update_data, $_FILES, $venue_id);
-    
-    // Check if the venue update was successful
-    if ($update_response['success']) {
-        echo "Venue updated successfully!";
-    } else {
-        echo "Failed to update venue: " . $update_response['error'];
-    }
-} else {
-    echo "Failed to add venue: " . $response['error'];
-}
+// Output result
+print_r($result);
 ?>

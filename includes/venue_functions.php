@@ -81,7 +81,7 @@ function deleteVenue($conn, $venue_id) {
 }
 
 
-function updateVenue($conn, $venue_id, $data, $files) {
+function updateVenue($conn, $venue_id, $data, $files, $testMode = false) {
     $name = mysqli_real_escape_string($conn, $data['name']);
     $location = mysqli_real_escape_string($conn, $data['location']);
     $capacity = intval($data['capacity']);
@@ -107,12 +107,16 @@ function updateVenue($conn, $venue_id, $data, $files) {
         mkdir($target_dir, 0777, true);
     }
 
-    // Upload new main image
+    // Upload main image
     if (isset($files['main_image']) && $files['main_image']['error'] === 0) {
         $main_image_name = time() . '_' . basename($files['main_image']['name']);
         $main_image_path = $target_dir . $main_image_name;
 
-        if (move_uploaded_file($files['main_image']['tmp_name'], $main_image_path)) {
+        $uploadSuccess = $testMode
+            ? copy($files['main_image']['tmp_name'], $main_image_path)
+            : move_uploaded_file($files['main_image']['tmp_name'], $main_image_path);
+
+        if ($uploadSuccess) {
             mysqli_query($conn, "UPDATE venue_images SET is_main = 0 WHERE venue_id = $venue_id");
             mysqli_query($conn, "
                 INSERT INTO venue_images (venue_id, image_url, is_main)
@@ -128,7 +132,11 @@ function updateVenue($conn, $venue_id, $data, $files) {
                 $filename = time() . '_' . basename($files['extra_images']['name'][$index]);
                 $targetPath = $target_dir . $filename;
 
-                if (move_uploaded_file($tmp_name, $targetPath)) {
+                $uploadSuccess = $testMode
+                    ? copy($tmp_name, $targetPath)
+                    : move_uploaded_file($tmp_name, $targetPath);
+
+                if ($uploadSuccess) {
                     mysqli_query($conn, "
                         INSERT INTO venue_images (venue_id, image_url)
                         VALUES ($venue_id, '$targetPath')
@@ -140,6 +148,7 @@ function updateVenue($conn, $venue_id, $data, $files) {
 
     return ['success' => true];
 }
+
 
 
 
