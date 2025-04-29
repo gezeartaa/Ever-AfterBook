@@ -126,6 +126,9 @@ if (!isset($_SESSION['admin_id'])) {
             <label>Capacity:</label>
             <input type="number" name="capacity" min="1" required>
 
+            <label>Price:</label>
+            <input type="number" name="price" step="0.01" max="99999999.99">
+
             <label>Upload Images (you can select multiple):</label>
             <input type="file" name="images[]" multiple accept="image/*" required>
 

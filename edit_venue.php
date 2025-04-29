@@ -1,5 +1,6 @@
 <?php
 include('db_connection.php');
+include('includes/venue_functions.php');
 session_start();
 
 if (!isset($_SESSION['admin_id'])) {
@@ -22,55 +23,14 @@ if (!$venue) {
 // Fetch images
 $images = mysqli_query($conn, "SELECT * FROM venue_images WHERE venue_id = $venue_id");
 
-// Handle form submission
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = mysqli_real_escape_string($conn, $_POST['name']);
-    $location = mysqli_real_escape_string($conn, $_POST['location']);
-    $capacity = intval($_POST['capacity']);
-    $price = floatval($_POST['price']);
-    $description = mysqli_real_escape_string($conn, $_POST['description']);
-
-    $update = mysqli_query($conn, "
-        UPDATE venues SET
-        name = '$name',
-        location = '$location',
-        capacity = $capacity,
-        price = $price,
-        description = '$description'
-        WHERE venue_id = $venue_id
-    ");
-
-    // Upload new main image
-    if (isset($_FILES['main_image']) && $_FILES['main_image']['error'] == 0) {
-        $filePath = 'uploads/' . time() . '_' . basename($_FILES['main_image']['name']);
-        move_uploaded_file($_FILES['main_image']['tmp_name'], $filePath);
-
-        // Set current main to false
-        mysqli_query($conn, "UPDATE venue_images SET is_main = 0 WHERE venue_id = $venue_id");
-
-        // Insert new image as main
-        mysqli_query($conn, "
-            INSERT INTO venue_images (venue_id, image_url, is_main)
-            VALUES ($venue_id, '$filePath', TRUE)
-        ");
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $result = updateVenue($conn, $venue_id, $_POST, $_FILES);
+    if ($result['success']) {
+        header("Location: manage_venues.php");
+        exit();
+    } else {
+        $error = $result['error'];
     }
-
-    // Upload additional images
-    if (!empty($_FILES['extra_images']['name'][0])) {
-        foreach ($_FILES['extra_images']['tmp_name'] as $index => $tmp_name) {
-            $filename = basename($_FILES['extra_images']['name'][$index]);
-            $targetPath = 'uploads/' . time() . '_' . $filename;
-            move_uploaded_file($tmp_name, $targetPath);
-
-            mysqli_query($conn, "
-                INSERT INTO venue_images (venue_id, image_url)
-                VALUES ($venue_id, '$targetPath')
-            ");
-        }
-    }
-
-    header("Location: manage_venues.php");
-    exit();
 }
 ?>
 
