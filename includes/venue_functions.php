@@ -4,7 +4,7 @@ function addVenue($conn, $data, $files) {
     $location = mysqli_real_escape_string($conn, $data['location']);
     $description = mysqli_real_escape_string($conn, $data['description']);
     $capacity = intval($data['capacity']);
-    $price = floatval($_POST['price']);
+    $price = floatval($data['price']);
     $main_image_index = isset($data['main_image']) ? intval($data['main_image']) : -1;
 
     $stmt = $conn->prepare("INSERT INTO venues (name, location, description, capacity, price)

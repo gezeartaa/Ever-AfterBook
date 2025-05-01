@@ -4,7 +4,7 @@ require_once(__DIR__ . '/../db_connection.php');
 require_once(__DIR__ . '/../includes/venue_functions.php');
 
 // Choose an existing venue ID in your database
-$venue_id = 25; // Replace with a valid venue ID
+$venue_id = 22; // Replace with a valid venue ID
 
 // Prepare POST-like data
 $data = [
@@ -42,5 +42,10 @@ $files = [
 $result = updateVenue($conn, $venue_id, $data, $files, true);
 
 // Output result
-print_r($result);
+if ($result['success']) {
+    echo "✅ Venue updated successfully.\n";
+} else {
+    echo "❌ Venue update failed.\n";
+    echo "Error: " . $result['error'] . "\n";
+}
 ?>

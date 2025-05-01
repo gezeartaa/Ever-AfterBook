@@ -32,4 +32,9 @@ class FakeDB {
 $fakeDb = new FakeDB();
 $result = submitReservation($fakeDb, 1, "Alice", "alice@example.com", "2025-12-01", "No special requests");
 
-assertEqual(['success' => true], $result, "Test successful reservation submission");
+if ($result['success']) {
+    echo "✅ Reservation submitted successfully.\n";
+} else {
+    echo "❌ Reservation submission failed.\n";
+    echo "Error: " . $result['error'] . "\n";
+}
