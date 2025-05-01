@@ -1,6 +1,9 @@
 <?php
-require_once(__DIR__ . '/../db_connection.php');
+require_once(__DIR__ . '/fake_db.php');
 require_once(__DIR__ . '/../includes/venue_functions.php');
+
+// Initialize the fake DB
+$fakeDb = new FakeDB();
 
 // Mock POST data
 $_POST = [
@@ -23,11 +26,8 @@ $testFiles = [
     ]
 ];
 
-// Debug output for $_POST
-var_dump($_POST); // This will show you the contents of the $_POST array
-
 // Call the function
-$result = addVenue($conn, $_POST, $testFiles);
+$result = addVenue($fakeDb, $_POST, $testFiles);
 
 // Output result
 if ($result['success']) {
@@ -35,4 +35,3 @@ if ($result['success']) {
 } else {
     echo "❌ Test failed: " . $result['error'] . "\n";
 }
-?>

@@ -1,7 +1,10 @@
 <?php
 // Include your DB connection and function files
-require_once(__DIR__ . '/../db_connection.php');
-require_once(__DIR__ . '/../includes/venue_functions.php');
+require_once(__DIR__ . '/../tests/fake_db.php'); // Use the FakeDB
+require_once(__DIR__ . '/../includes/venue_functions.php'); // Include the file with the updateVenue function
+
+// Use the FakeDB instead of the real one
+$conn = new FakeDB();
 
 // Choose an existing venue ID in your database
 $venue_id = 22; // Replace with a valid venue ID
