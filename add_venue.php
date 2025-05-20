@@ -43,7 +43,7 @@ if (!isset($_SESSION['admin_id'])) {
 
         h2 {
             text-align: center;
-            color: #B76E79;
+            color: #be97b3ff;
             margin-bottom: 30px;
         }
 
@@ -72,7 +72,7 @@ if (!isset($_SESSION['admin_id'])) {
 
         button {
             margin-top: 25px;
-            background-color: #B76E79;
+            background-color: #be97b3ff;
             color: white;
             padding: 12px 20px;
             border: none;
@@ -80,10 +80,11 @@ if (!isset($_SESSION['admin_id'])) {
             cursor: pointer;
             font-weight: bold;
             width: 100%;
+            transition: color .15s ease-in-out;
         }
 
         button:hover {
-            background-color: #9a5b65;
+            background-color: #b87c91ff;
         }
 
         .message {
@@ -97,6 +98,7 @@ if (!isset($_SESSION['admin_id'])) {
 
         a{
             text-decoration: none;
+            transition: color 0.15s ease-in-out;
             color: black;
         }
         .exit{

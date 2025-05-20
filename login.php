@@ -28,6 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 <head>
     <title>Admin Login - Wedding Portal</title>
+    <link rel="stylesheet" href="css/style.css">
     <style>
         body {
             margin: 0;
@@ -36,76 +37,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             background-size: cover;
             font-family: 'Georgia', serif;
             color: #333;
-        }
-
-        .login-container {
-            width: 350px;
-            margin: 100px auto;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 30px 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            text-align: center;
-        }
-
-        .login-container img.logo {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 50%;
-            margin-bottom: 15px;
-            border: 2px solid #B76E79;
-        }
-
-        .login-container h2 {
-            font-family: 'Cursive', sans-serif;
-            color: #B76E79;
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            text-align: left;
-            margin: 10px 0 5px;
-            font-weight: bold;
-        }
-
-        input[type="text"],
-        input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            box-sizing: border-box;
-        }
-
-        button {
-            background-color: #B76E79;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        button:hover {
-            background-color: #9a5b65;
-        }
-
-        .error-message {
-            color: #b30000;
-            margin-top: 15px;
-            font-style: italic;
-        }
-
-        @media (max-width: 400px) {
-            .login-container {
-                width: 90%;
-                padding: 20px;
-            }
         }
     </style>
 </head>

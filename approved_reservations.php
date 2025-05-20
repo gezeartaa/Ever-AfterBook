@@ -33,19 +33,26 @@ if (!$result) {
     <title>Approved Reservations</title>
     <style>
         body {
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #f5f5f5;
+            /* font-family: 'Segoe UI', sans-serif; */
+            /* background-color: #f5f5f5; */
             margin: 0;
-            padding: 20px;
+            /* padding: 20px; */
+        }
+
+        .container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         h2 {
-            color: #B76E79;
+            color: #be97b3ff;
             text-align: center;
         }
 
         table {
-            width: 100%;
+            width: 90%;
             border-collapse: collapse;
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -59,28 +66,37 @@ if (!$result) {
         }
 
         th {
-            background-color: #B76E79;
+            background-color: #be97b3ff;
             color: white;
         }
 
         tr:hover {
-            background-color: #f1f1f1;
+            background-color: #ecdce5ff;
         }
 
         .back {
+            margin: 30px 50px;
             display: inline-block;
-            margin-top: 15px;
+            margin-top: 30px;
+            padding: 10px 20px;
             text-decoration: none;
-            color: #B76E79;
+            background-color: #be97b3ff;;
+            color: white;
             font-weight: bold;
+            border-radius: 5px;
+            text-align: center;
+            transition: background-color 0.3s ease;
         }
 
         .back:hover {
-            text-decoration: underline;
+            background-color: #b87c91ff;
+            color: #fafafa;
         }
     </style>
 </head>
 <body>
+   <div class="container">
+    <br><br>
     <h2>Approved Reservations</h2>
     <table>
         <tr>
@@ -105,6 +121,8 @@ if (!$result) {
         <?php endif; ?>
     </table>
 
-    <a class="back" href="dashboard.php">← Back to Dashboard</a>
+    
+    </div>
+    <a class="back" href="approve.php">← Back </a>
 </body>
 </html>

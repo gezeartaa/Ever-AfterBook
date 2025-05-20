@@ -1,0 +1,91 @@
+:root {
+    --color1: #0d6efd;
+    --color2: #cfe2ff;
+    --color3: #dee2e6;
+    --gradient1: #0d6efd;
+    --gradient2: #3eb2bf;
+    --gradient3: rgba(131, 58, 180, 1);
+    --gradient4: rgba(253, 29, 29, 1);
+    --gradient5: rgba(252, 176, 69, 1);
+
+
+    --ultra-violet: #694f8eff;
+    --african-violet: #b692c2ff;
+    --lavender-pink: #e3a5c7ff;
+    --misty-rose: #ffdfd6ff;
+    --linen: #f7efe5ff;
+
+    --puce: #b87c91ff;
+    --orchid-pink: #e4b0bfff;
+    --lilac: #be97b3ff;
+    --lavender-blush: #ecdce5ff;
+    --apricot: #fbd5b7ff;
+    --white-smoke: #f6f5f3ff;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f8f8f8;
+}
+.container {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.top-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.top-actions a {
+    background: var(--lilac);
+    color: white;
+    padding: 10px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+.top-actions a:hover {
+    background: var(--puce);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+th, td {
+    padding: 14px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+img.thumb {
+    width: 80px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+.actions a {
+    margin-right: 10px;
+    text-decoration: none;
+    font-weight: bold;
+}
+.edit-link {
+    color: #007bff;
+}
+.delete-link {
+    color: #cc0000;
+}

@@ -10,65 +10,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
-    <style> 
-        .navbar {
-            top: 0;
-            left: 0;
-            right: 0;
-            width: 100%;
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            border: 0;
-            background-color: #f7d8db;
-            z-index: 100;
-            padding: 20px 0;
-        }
-
-        .navbar-brand {
-            font-size: 30px;
-            font-family: 'Playfair Display', serif;
-            font-weight: bold;
-            color: #7a4d56; /* Soft wedding pink color */
-            margin-right: 20px;
-        }
-
-        .navbar-brand img {
-            width: 190px; /* Placeholder for logo */
-            height: auto;
-            object-fit: contain;
-        }
-
-        .nav-pills .nav-item .nav-link {
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            background-color: #e3a2b3; /* Soft wedding pink */
-            border-radius: 30px;
-            color: white;
-            padding: 10px 20px;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .nav-pills .nav-item .nav-link:hover {
-            background-color: #d36b7f;
-            color: white;
-        }
-
-        .nav-pills .nav-item .nav-link.active {
-            background-color: #7a4d56; /* Elegant color for active links */
-            border-radius: 30px;
-        }
-
-        .navbar-toggler {
-            border-color: #7a4d56;
-        }
-
-        .tab-content {
-            height: 100%;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-    </style>
+    <link rel="stylesheet" href="css/headers.css">
+    <link rel="stylesheet" href="css/adminstyle.css">
 </head>
 <body>
 
@@ -83,7 +26,7 @@
             <div class="collapse navbar-collapse justify-content-lg-end" id="navbarSupportedContent">
                 <ul class="nav nav-pills align-right flex-column flex-lg-row p-2" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link active" href="dashboard.php">Home</a>
+                        <a class="nav-link" href="dashboard.php">Home</a>
                     </li>
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" href="manage_venues.php">Venues</a>

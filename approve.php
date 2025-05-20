@@ -22,7 +22,7 @@ $applications = $conn->query("SELECT * FROM reservation_application");
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Georgia', serif;
+            /* font-family: 'Georgia', serif; */
             background-color: #f8f0f2; /* Soft pink background */
             /* padding: 20px; */
             margin: 0;
@@ -64,7 +64,7 @@ $applications = $conn->query("SELECT * FROM reservation_application");
         }
 
         th {
-            background-color: #B76E79; /* Soft pink */
+            background-color: #be97b3ff;; /* Soft pink */
             color: white;
             font-size: 18px;
             text-transform: uppercase;
@@ -138,7 +138,7 @@ $applications = $conn->query("SELECT * FROM reservation_application");
             margin-top: 30px;
             padding: 10px 20px;
             text-decoration: none;
-            background-color: #B76E79;
+            background-color: #be97b3ff;;
             color: white;
             font-weight: bold;
             border-radius: 5px;
@@ -147,7 +147,8 @@ $applications = $conn->query("SELECT * FROM reservation_application");
         }
 
         .back:hover {
-            background-color: #9b4f60;
+            background-color: #b87c91ff;
+            color: #fafafa;
         }
 
         .approved {
@@ -155,7 +156,7 @@ $applications = $conn->query("SELECT * FROM reservation_application");
             margin-top: 30px;
             padding: 10px 20px;
             text-decoration: none;
-            background-color: #B76E79;
+            background-color: #be97b3ff;;
             color: white;
             font-weight: bold;
             border-radius: 5px;
@@ -164,7 +165,8 @@ $applications = $conn->query("SELECT * FROM reservation_application");
         }
 
         .approved:hover {
-            background-color: #9b4f60;
+            background-color: #b87c91ff;
+            color: #fafafa;
         }
         .button_wrapper{
             display: flex;

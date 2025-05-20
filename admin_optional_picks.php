@@ -31,7 +31,7 @@ $categories = [
         }
 
         .header {
-            background-color: #B76E79;
+            background-color: #be97b3ff;
             color: white;
             padding: 15px 30px;
             display: flex;
@@ -74,7 +74,7 @@ $categories = [
         }
 
         .category-tabs button.active {
-            background-color: #B76E79;
+            background-color: #be97b3ff;
             color: white;
         }
 
@@ -125,7 +125,7 @@ $categories = [
         }
 
         .add-btn {
-            background: #B76E79;
+            background: #be97b3ff;
             color: white;
             padding: 10px 18px;
             border-radius: 6px;
@@ -181,7 +181,7 @@ $categories = [
         }
 
         .modal form button {
-            background-color: #B76E79;
+            background-color: #be97b3ff;
             color: white;
             border: none;
             padding: 10px 16px;
