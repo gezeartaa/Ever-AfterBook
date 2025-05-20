@@ -10,7 +10,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
-    <style>
+    <link rel="stylesheet" href="css/headers.css">
+    <link rel="stylesheet" href="css/style.css">
+
+   <!-- <style>
         a {
             text-decoration: none;
         }
@@ -72,7 +75,7 @@
             align-items: center;
             flex-direction: column;
         }
-    </style>
+    </style> -->
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light">
@@ -86,7 +89,7 @@
             <div class="collapse navbar-collapse justify-content-lg-end" id="navbarSupportedContent">
                 <ul class="nav nav-pills align-right flex-column flex-lg-row p-2" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link active" href="index.php">Home</a>
+                        <a class="nav-link" href="index.php">Home</a>
                     </li>
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" href="venues.php">Venues</a>

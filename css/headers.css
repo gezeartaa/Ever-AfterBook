@@ -5,23 +5,29 @@
 --misty-rose: #ffdfd6ff;
 --linen: #f7efe5ff;
 
+--darktext: #333;
 --puce: #b87c91ff;
+--lilac: #be97b3ff;
 --orchid-pink: #e4b0bfff;
 --lavender-blush: #ecdce5ff;
 --apricot: #fbd5b7ff;
 --white-smoke: #f6f5f3ff;
 }
 
+a{
+  text-decoration: none;
+}
+
 body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #fff;
-    }
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fff;
+  }
 
     .navbar {
-      background-color: #E3A5C7;
-      padding: 1rem 2rem;
+      background-color: var(--lilac);
+      /* paddisng: 1rem 2rem; */
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
       position: sticky;
       top: 0;
@@ -32,14 +38,14 @@ body {
       font-size: 28px;
       font-family: 'Playfair Display', serif;
       font-weight: bold;
-      color: #b76e79;
+      
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
     .navbar-brand img {
-      height: 40px;
+      height: 65px;
       object-fit: contain;
     }
 
@@ -47,19 +53,19 @@ body {
       border-radius: 20px;
       padding: 8px 18px;
       font-family: 'Playfair Display', serif;
-      font-size: 16px;
+      font-size: 20px;
       transition: all 0.3s ease-in-out;
-      color: #7a4d56;
+      color: var(--darktext);
     }
 
     .nav-link:hover {
-      background-color: #f3cdd1;
-      color: #7a4d56;
+      /* background-color: var(--african-violet); */
+      color: var(--lavender-blush);
     }
 
-    .nav-link.active {
-      background-color: #b76e79;
-      color: #fff !important;
+    .nav-pills .nav-item .nav-link.active {
+      background-color: var(--lilac); /* Elegant color for active links */
+      border-radius: 30px;
     }
 
     .navbar-toggler {
