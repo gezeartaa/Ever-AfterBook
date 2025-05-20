@@ -39,11 +39,11 @@ $applications = $conn->query("SELECT * FROM reservation_application");
         }
 
         h2 {
-            color: #B76E79; /* Elegant pinkish hue for heading */
+            color: #be97b3ff; /* Elegant pinkish hue for heading */
             text-align: center;
             font-size: 36px;
             font-weight: 700;
-            margin-bottom: 30px;
+            margin-top: 30px;
             font-family: 'Times New Roman', serif;
         }
 
@@ -138,7 +138,7 @@ $applications = $conn->query("SELECT * FROM reservation_application");
             margin-top: 30px;
             padding: 10px 20px;
             text-decoration: none;
-            background-color: #be97b3ff;;
+            background-color: #be97b3ff;
             color: white;
             font-weight: bold;
             border-radius: 5px;
