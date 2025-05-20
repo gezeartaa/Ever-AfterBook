@@ -1,0 +1,83 @@
+:root {
+--ultra-violet: #694f8eff;
+--african-violet: #b692c2ff;
+--lavender-pink: #e3a5c7ff;
+--misty-rose: #ffdfd6ff;
+--linen: #f7efe5ff;
+
+--puce: #b87c91ff;
+--orchid-pink: #e4b0bfff;
+--lavender-blush: #ecdce5ff;
+--apricot: #fbd5b7ff;
+--white-smoke: #f6f5f3ff;
+}
+
+body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff;
+    }
+
+    .navbar {
+      background-color: #E3A5C7;
+      padding: 1rem 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    .navbar-brand {
+      font-size: 28px;
+      font-family: 'Playfair Display', serif;
+      font-weight: bold;
+      color: #b76e79;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .navbar-brand img {
+      height: 40px;
+      object-fit: contain;
+    }
+
+    .nav-link {
+      border-radius: 20px;
+      padding: 8px 18px;
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      transition: all 0.3s ease-in-out;
+      color: #7a4d56;
+    }
+
+    .nav-link:hover {
+      background-color: #f3cdd1;
+      color: #7a4d56;
+    }
+
+    .nav-link.active {
+      background-color: #b76e79;
+      color: #fff !important;
+    }
+
+    .navbar-toggler {
+      border: none;
+      outline: none;
+    }
+
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%237a4d56' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(122,77,86, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    @media (max-width: 991px) {
+      .nav-pills {
+        gap: 10px;
+      }
+
+      .navbar-collapse {
+        padding-top: 1rem;
+      }
+    }
+

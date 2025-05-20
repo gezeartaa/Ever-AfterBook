@@ -24,7 +24,7 @@ $categories = [
 <head>
     <title>Manage Optional Picks</title>
     <style>
-                body {
+        body {
             margin: 0;
             font-family: 'Segoe UI', sans-serif;
             background: #f8f8f8;
