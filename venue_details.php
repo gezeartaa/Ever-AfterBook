@@ -42,6 +42,12 @@ if (isset($_GET['id'])) {
         $booked_dates[] = $row['event_date'];
     }
 
+    // Fetch optional picks
+    $music_options = $conn->query("SELECT * FROM music");
+    $menu_options = $conn->query("SELECT * FROM menu");
+    $decor_options = $conn->query("SELECT * FROM decor");
+
+
 } else {
     echo "<p>Invalid request.</p>";
     exit;
@@ -172,6 +178,60 @@ if (isset($_GET['id'])) {
             border-radius: 8px;
             object-fit: cover;
         }
+
+
+/* RADIO BUTTONS */
+        .option-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .option-card {
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            padding: 10px;
+            width: 200px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .option-card:hover {
+            border-color: #ca6997;
+        }
+
+        .option-card input[type="radio"] {
+            display: none;
+        }
+
+        .option-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+
+        .option-card .option-info h4 {
+            margin: 5px 0;
+            font-size: 1.1em;
+        }
+
+        .option-card input[type="radio"]:checked + img,
+        .option-card input[type="radio"]:checked ~ .option-info {
+            outline: 2px solid #ca6997;
+            outline-offset: 4px;
+        }
+
+        .option-card input[type="radio"]:checked ~ .option-info h4 {
+            color: #ca6997;
+            font-weight: bold;
+        }
+
     </style>
 </head>
 <body>
@@ -218,6 +278,64 @@ if (isset($_GET['id'])) {
 
         <label for="others">Additional Requests (Optional):</label>
         <textarea id="others" name="others"></textarea>
+
+        <!-- Music Options -->
+        <?php if ($music_options->num_rows > 0): ?>
+            <label>Choose Music:</label>
+            <div class="option-group">
+                <?php while ($music = $music_options->fetch_assoc()): ?>
+                    <label class="option-card">
+                        <input type="radio" name="music_id" value="<?php echo $music['music_id']; ?>">
+                        <img src="<?php echo !empty($music['picture']) ? $music['picture'] : 'images/default_venue.jpg'; ?>" alt="Music Option">
+                        <div class="option-info">
+                            <h4><?php echo htmlspecialchars($music['name']); ?></h4>
+                            <p><?php echo htmlspecialchars($music['style']); ?></p>
+                            <p><strong>$<?php echo $music['price']; ?></strong></p>
+                        </div>
+                    </label>
+                <?php endwhile; ?>
+            </div>
+        <?php endif; ?>
+
+        <!-- Menu Options -->
+        <?php if ($menu_options->num_rows > 0): ?>
+            <label>Choose Menu:</label>
+            <div class="option-group">
+                <?php while ($menu = $menu_options->fetch_assoc()): ?>
+                    <label class="option-card">
+                        <input type="radio" name="menu_id" value="<?php echo $menu['menu_id']; ?>">
+                        <img src="<?php echo !empty($menu['picture']) ? $menu['picture'] : 'images/default_venue.jpg'; ?>" alt="Menu Option">
+                        <div class="option-info">
+                            <h4><?php echo htmlspecialchars($menu['name']); ?></h4>
+                            <p><?php echo htmlspecialchars($menu['style']); ?></p>
+                            <p><strong>$<?php echo $menu['price']; ?></strong></p>
+                        </div>
+                    </label>
+                <?php endwhile; ?>
+            </div>
+        <?php endif; ?>
+
+        <!-- Decor Options -->
+    <?php if ($decor_options->num_rows > 0): ?>
+            <label>Choose Decor:</label>
+            <div class="option-group">
+                <?php while ($decor = $decor_options->fetch_assoc()): ?>
+                    <label class="option-card">
+                        <input type="radio" name="decor_id" value="<?php echo $decor['decor_id']; ?>">
+                        <img src="<?php echo !empty($decor['picture']) ? $decor['picture'] : 'images/default_venue.jpg'; ?>" alt="Decor Option">
+                        <div class="option-info">
+                            <h4><?php echo htmlspecialchars($decor['name']); ?></h4>
+                            <p><?php echo htmlspecialchars($decor['style']); ?></p>
+                            <p><strong>$<?php echo $decor['price']; ?></strong></p>
+                        </div>
+                    </label>
+                <?php endwhile; ?>
+            </div>
+        <?php endif; ?>
+
+
+
+
 
         <button type="submit">Request Reservation</button>
     </form>

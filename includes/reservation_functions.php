@@ -1,25 +1,23 @@
 <?php
-    function submitReservation($conn, $venue_id, $client_name, $client_email, $event_date, $others) {
+    function submitReservation($conn, $venue_id, $client_name, $client_email, $event_date, $others, $music_id = null, $menu_id = null, $decor_id = null) {
         if (empty($venue_id) || empty($client_name) || empty($client_email) || empty($event_date)) {
             return ['success' => false, 'error' => 'Required fields are missing'];
         }
 
-        $stmt = $conn->prepare("INSERT INTO reservation_application 
-            (venue_id, client_name, client_email, event_date, others, status) 
-            VALUES (?, ?, ?, ?, ?, 'Pending')");
-        
-        if (!$stmt) {
-            return ['success' => false, 'error' => $conn->error];
-        }
-
-        $stmt->bind_param("issss", $venue_id, $client_name, $client_email, $event_date, $others);
+        $stmt = $conn->prepare("
+            INSERT INTO reservation_application 
+            (venue_id, client_name, client_email, event_date, others, music_id, menu_id, decor_id) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        ");
+        $stmt->bind_param("isssssii", 
+            $venue_id, $client_name, $client_email, $event_date, $others, 
+            $music_id, $menu_id, $decor_id
+        );
 
         if ($stmt->execute()) {
-            $stmt->close();
             return ['success' => true];
         } else {
-            $stmt->close();
-            return ['success' => false, 'error' => $conn->error];
+            return ['success' => false, 'error' => $stmt->error];
         }
     }
 
