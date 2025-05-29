@@ -48,7 +48,8 @@
     <!-- <div class="line"></div> -->
      <hr class="divider">
     <p class="search-description">Explore a curated list of the most stunning wedding venues. Let us help you make your big day even more special!</p>
-    <button class="btn btn-pink" onclick="changeToSearchTab()">Search for a venue</button>
+    <a href="venues.php" class="btn btn-pink">Search for a venue</a>
+
   </div>
 </div>
 
